@@ -6,19 +6,28 @@ import api from "../API/index";
 const ValidadeToken = ({ navigation }) => {
 
     useEffect(() => {
-
         setTimeout(() => {
             const validadeToken = async () => {
                 const token = await AsyncStorage.getItem("token")
                 if (token) {
-                    navigation.navigate('Home')
+                    try {
+                        const data = await api.get('/user', {
+                            headers: {
+                                token: token
+                            }
+                        })
+                        console.log(data.data.authData)
+                        navigation.navigate('Home')
+                    } catch (error) {
+                        console.log(error)
+                        navigation.navigate('Login')
+                    }
                 } else {
                     navigation.navigate('Login')
                 }
             }
             validadeToken()
         }, 1000)
-
     }, []);
 
     return (
