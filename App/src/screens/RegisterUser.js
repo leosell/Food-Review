@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Logo from '../../assets/Logo.png';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
+import api from "../API";
  
 const RegisterUser = ({navigation}) => {
     const [name, setName] = useState('');
@@ -12,8 +13,26 @@ const RegisterUser = ({navigation}) => {
  
     const { height } = useWindowDimensions();
  
-    const onRegisterPressed = () => {
-        alert("Registered User " + name + " and " + password + " and " + email + " and " + admin);
+    const onRegisterPressed = async () => {
+        try {
+            const authData = await api.post('/user/register', {
+                name: name,
+                email: email,
+                password: password,
+                admin: admin
+            })
+            if (authData.status === 200) {
+                alert('Usuário cadastrado com sucesso')
+                navigation.navigate('Login')
+            }
+        } catch (error) {
+            alert('Usuario já cadastrado')
+            console.log(error)
+            setName('')
+            setEmail('')
+            setPassword('')
+            setAdmin('')
+        }
     }
  
     return (
