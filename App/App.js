@@ -4,11 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-
 import Home from './src/screens/Home';
 import Login from './src/screens/Login';
 import RegisterUser from './src/screens/RegisterUser';
 import ValidadeToken from './src/screens/ValidateToken';
+import RegisterRestaurants from './src/screens/RegisterRestaurant';
  
 const Stack = createNativeStackNavigator();
  
@@ -20,6 +20,7 @@ const App = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="RegisterUser" component={RegisterUser} />
+        <Stack.Screen name="RegisterRestaurants" component={RegisterRestaurants} /> 
       </Stack.Navigator>
     </NavigationContainer>
   )

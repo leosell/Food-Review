@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { Context, Provider } from '../context/dataContext'
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [ counter, setCounter ] = useState(0);
   useEffect(() => {
     document.title = "React App"
@@ -19,6 +19,13 @@ const Home = () => {
         title='Zerar'
         onPress={() => setCounter(0)}
       />
+
+      <TouchableOpacity onPress={() => navigation.navigate('RegisterRestaurants')}>
+        <Text>
+          Cadastrar restaurantes {" "}
+          <Text style={styles.registerText}>Registrar Restaurantes</Text>
+        </Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -31,6 +38,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 30
+  },
+  registerText: {
+    fontWeight: "bold",
+    color: "#6200ee",
   }
 })
 

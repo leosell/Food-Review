@@ -12,15 +12,11 @@ const Restaurant = connection.define("restaurants", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  type: {
-    type: Sequelize.STRING,
+  cnpj: {
+    type: Sequelize.STRING(14),
     allowNull: false,
   },
-  description: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  address: {
+  endereco: {
     type: Sequelize.STRING,
     allowNull: false,
   },
